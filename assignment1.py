@@ -10,14 +10,13 @@ import random
 from static_array import *
 
 
-
 # ------------------- PROBLEM 1 - MIN_MAX -----------------------------------
 
 def min_max(arr: StaticArray) -> (int, int):
-    minimum = arr.get(0)  #assigning values of arraw both min and max
+    minimum = arr.get(0)  # assigning values of arraw both min and max
     maximum = arr.get(0)
     for i in range(arr.length()):
-        if arr.get(i) < minimum: # scenarios for values if either is less than or grater than min or max value
+        if arr.get(i) < minimum:  # scenarios for values if either is less than or grater than min or max value
             minimum = arr.get(i)
         elif arr.get(i) > maximum:
             maximum = arr.get(i)
@@ -26,12 +25,13 @@ def min_max(arr: StaticArray) -> (int, int):
 
 pass
 
+
 # ------------------- PROBLEM 2 - FIZZ_BUZZ ---------------------------------
 
 def fizz_buzz(arr: StaticArray) -> StaticArray:
     new_arr = StaticArray(arr.length())
     for i in range(arr.length()):
-        if arr.get(i) % 3 == 0 and arr.get(i) % 5 == 0: # conditionals on which value is divisble by 3 or 5
+        if arr.get(i) % 3 == 0 and arr.get(i) % 5 == 0:  # conditionals on which value is divisble by 3 or 5
             new_arr.set(i, "fizzbuzz")  # also with conditional if 3 or 5 are multiples
         elif arr.get(i) % 5 == 0:
             new_arr.set(i, "buzz")
@@ -47,16 +47,17 @@ def fizz_buzz(arr: StaticArray) -> StaticArray:
 # ------------------- PROBLEM 3 - REVERSE -----------------------------------
 
 def reverse(arr: StaticArray) -> None:
-    for index in range(arr.length() // 2):  #reverse order of elements in array
+    for index in range(arr.length() // 2):  # reverse order of elements in array
         temp = arr.get(index)
         arr.set(index, arr.get(arr.length() - 1 - index))
         arr.set(arr.length() - 1 - index, temp)
     pass
 
+
 # ------------------- PROBLEM 4 - ROTATE ------------------------------------
 
 def rotate(arr: StaticArray, steps: int) -> StaticArray:
-    set_arr = StaticArray(arr.length()) # function receievs the given paramters of shifting for direction
+    set_arr = StaticArray(arr.length())  # function receievs the given paramters of shifting for direction
     for index in range(arr.length()):  # right = positive and vice versa
         new_index = (index + steps) % arr.length()
         set_arr.set(new_index, arr.get(index))
@@ -64,35 +65,38 @@ def rotate(arr: StaticArray, steps: int) -> StaticArray:
 
     pass
 
+
 # ------------------- PROBLEM 5 - SA_RANGE ----------------------------------
 
-def sa_range(start: int, end: int) -> StaticArray: # receives both start and end integers
-    arr = StaticArray(end - start + 1)
+def sa_range(start: int, end: int) -> StaticArray:  # receives both start and end integers
+    arr = abs(StaticArray(end - start + 1))
     for index, value in enumerate(range(start, end + 1)):
         arr.set(index, value)
-    return abs(arr)     # returns values of consecutive integers
+    return arr  # returns values of consecutive integers
 
     pass
+
 
 # ------------------- PROBLEM 6 - IS_SORTED ---------------------------------
 
 def is_sorted(arr: StaticArray) -> int:
-    descending = True  # Sorts array based on given ending value -1 or 1
-    ascending = True
+    descending = False  # Sorts array based on given ending value -1 or 1
+    ascending = False
     for index in range(1, arr.length()):
         if arr.get(index) < arr.get(index - 1):
-            ascending = False
+            ascending = True
         if arr.get(index) > arr.get(index - 1):
-            descending = False  # with also 0 being an otherwise value
+            descending = True  # with also 0 being an otherwise value
         if not ascending and not descending:
             return 0
     return 1 if ascending else -1
     pass
 
+
 # ------------------- PROBLEM 7 - FIND_MODE -----------------------------------
 
 def find_mode(arr: StaticArray) -> (int, int):
-    current_count = 1  #orders static array values in nondescending or ascending
+    current_count = 1  # orders static array values in nondescending or ascending
     maximum_count = 1
     mode = arr.get(0)
     for index in range(1, arr.length()):
@@ -103,19 +107,21 @@ def find_mode(arr: StaticArray) -> (int, int):
                 mode = arr.get(index)
         else:  # output of array
             current_count = 1
-    return (mode, maximum_count)
+    return mode, maximum_count
     pass
+
 
 # ------------------- PROBLEM 8 - REMOVE_DUPLICATES -------------------------
 
 def remove_duplicates(arr: StaticArray) -> StaticArray:
-    unique = StaticArray(1) #orders static array values in nondescending or ascending
+    unique = StaticArray(1)  # orders static array values in nondescending or ascending
     unique.set(0, arr.get(0))
     for index in range(1, arr.length()):
         if arr.get(index) != arr.get(index - 1):
-            unique.set(unique.length(), arr.get(index)) #differs from 7 using count sort alg
+            unique.set(unique.length(), arr.get(index))  # differs from 7 using count sort alg
     return unique
     pass
+
 
 # ------------------- PROBLEM 9 - COUNT_SORT --------------------------------
 
@@ -137,20 +143,23 @@ def count_sort(arr: StaticArray) -> StaticArray:
 
     pass
 
+
 # ------------------- PROBLEM 10 - SORTED SQUARES ---------------------------
 
 def sorted_squares(arr: StaticArray) -> StaticArray:  # importsd not descending elements
     squares_doubled = StaticArray(arr.length())
     val, r = 0, arr.length() - 1
-    for index in range(arr.length() - 1, -1, -1): # returns new staic with sqare root values, does not modify original array
+    for index in range(arr.length() - 1, -1,
+                       -1):  # returns new staic with sqare root values, does not modify original array
         if abs(arr.get(val)) > abs(arr.get(r)):
-            squares_doubled.set(index, arr.get(val)**2)
+            squares_doubled.set(index, arr.get(val) ** 2)
             val += 1
         else:
-            squares_doubled.set(index, arr.get(r)**2)
+            squares_doubled.set(index, arr.get(r) ** 2)
             r -= 1
     return squares_doubled
     pass
+
 
 # ------------------- BASIC TESTING -----------------------------------------
 
