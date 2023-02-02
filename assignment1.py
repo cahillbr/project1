@@ -14,10 +14,10 @@ from static_array import *
 # ------------------- PROBLEM 1 - MIN_MAX -----------------------------------
 
 def min_max(arr: StaticArray) -> (int, int):
-    minimum = arr.get(0)
+    minimum = arr.get(0)  #assigning values of arraw both min and max
     maximum = arr.get(0)
     for i in range(arr.length()):
-        if arr.get(i) < minimum:
+        if arr.get(i) < minimum: # scenarios for values if either is less than or grater than min or max value
             minimum = arr.get(i)
         elif arr.get(i) > maximum:
             maximum = arr.get(i)
@@ -31,12 +31,12 @@ pass
 def fizz_buzz(arr: StaticArray) -> StaticArray:
     new_arr = StaticArray(arr.length())
     for i in range(arr.length()):
-        if arr.get(i) % 3 == 0 and arr.get(i) % 5 == 0:
-            new_arr.set(i, "fizzbuzz")
-        elif arr.get(i) % 3 == 0:
-            new_arr.set(i, "fizz")
+        if arr.get(i) % 3 == 0 and arr.get(i) % 5 == 0: # conditionals on which value is divisble by 3 or 5
+            new_arr.set(i, "fizzbuzz")  # also with conditional if 3 or 5 are multiples
         elif arr.get(i) % 5 == 0:
             new_arr.set(i, "buzz")
+        elif arr.get(i) % 3 == 0:
+            new_arr.set(i, "fizz")
         else:
             new_arr.set(i, arr.get(i))
     return new_arr
@@ -47,17 +47,17 @@ def fizz_buzz(arr: StaticArray) -> StaticArray:
 # ------------------- PROBLEM 3 - REVERSE -----------------------------------
 
 def reverse(arr: StaticArray) -> None:
-    def reverse(staticArray):
-        for i in range(staticArray.length() // 2):
-            staticArray[i], staticArray[staticArray.length() - 1 - i] = \
-                staticArray[staticArray.length() - 1 - i], staticArray[index]
+    for index in range(arr.length() // 2):  #reverse order of elements in array
+        temp = arr.get(index)
+        arr.set(index, arr.get(arr.length() - 1 - index))
+        arr.set(arr.length() - 1 - index, temp)
     pass
 
 # ------------------- PROBLEM 4 - ROTATE ------------------------------------
 
 def rotate(arr: StaticArray, steps: int) -> StaticArray:
-    set_arr = StaticArray(arr.length())
-    for i in range(arr.length()):
+    set_arr = StaticArray(arr.length()) # function receievs the given paramters of shifting for direction
+    for i in range(arr.length()):  # right = positive and vice versa
         new_index = (i + steps) % arr.length()
         set_arr.set(new_index, arr.get(i))
     return set_arr
