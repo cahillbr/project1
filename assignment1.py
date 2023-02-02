@@ -116,11 +116,7 @@ def find_mode(arr: StaticArray) -> (int, int):
 def remove_duplicates(arr: StaticArray) -> StaticArray:
     unique = StaticArray(1)  # orders static array values in nondescending or ascending
     unique.set(0, arr.get(0))
-    for index in range(1, arr.length()):
-        if arr.get(index) != arr.get(index - 1):
-            unique.set(unique.length(), arr.get(index))  # differs from 7 using count sort alg
-    return unique
-    pass
+
 
 
 # ------------------- PROBLEM 9 - COUNT_SORT --------------------------------
@@ -130,7 +126,7 @@ def count_sort(arr: StaticArray) -> StaticArray:
     for index in range(1, arr.length()):  # returns new staic array from given one
         if arr.get(index) > maximum_value:
             maximum_value = arr.get(index)
-    count = [0] * (maximum_value + 1)
+    count = 0 * (maximum_value + 1)
     for index in range(arr.length()):
         count[arr.get(index)] += 1
     for index in range(1, maximum_value + 1):  # sorts in non ascewnding order using count agl
