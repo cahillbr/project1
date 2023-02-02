@@ -70,7 +70,7 @@ def sa_range(start: int, end: int) -> StaticArray: # receives both start and end
     arr = StaticArray(end - start + 1)
     for index, value in enumerate(range(start, end + 1)):
         arr.set(index, value)
-    return arr      # returns values of consecutive integers
+    return abs(arr)     # returns values of consecutive integers
 
     pass
 
