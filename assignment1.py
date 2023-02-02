@@ -140,16 +140,16 @@ def count_sort(arr: StaticArray) -> StaticArray:
 # ------------------- PROBLEM 10 - SORTED SQUARES ---------------------------
 
 def sorted_squares(arr: StaticArray) -> StaticArray:  # importsd not descending elements
-    squares = StaticArray(arr.length())
-    l, r = 0, arr.length() - 1
-    for i in range(arr.length() - 1, -1, -1): # returns new staic with sqare root values, does not modify original array
-        if abs(arr.get(l)) > abs(arr.get(r)):
-            squares.set(i, arr.get(l)**2)
-            l += 1
+    squares_doubled = StaticArray(arr.length())
+    val, r = 0, arr.length() - 1
+    for index in range(arr.length() - 1, -1, -1): # returns new staic with sqare root values, does not modify original array
+        if abs(arr.get(val)) > abs(arr.get(r)):
+            squares_doubled.set(index, arr.get(val)**2)
+            val += 1
         else:
-            squares.set(i, arr.get(r)**2)
+            squares_doubled.set(index, arr.get(r)**2)
             r -= 1
-    return squares
+    return squares_doubled
     pass
 
 # ------------------- BASIC TESTING -----------------------------------------
