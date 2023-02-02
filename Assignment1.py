@@ -7,7 +7,8 @@
 
 
 import random
-from static_array import *
+from static_array im
+import static_array.py
 
 
 # ------------------- PROBLEM 1 - MIN_MAX -----------------------------------
