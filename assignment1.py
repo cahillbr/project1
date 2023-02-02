@@ -89,7 +89,7 @@ def is_sorted(arr: StaticArray) -> int:
             descending = True  # with also 0 being an otherwise value
         if not ascending and not descending:
             return 0
-    return 1 if ascending else -1
+    return -1 if ascending else 1
     pass
 
 
