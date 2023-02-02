@@ -7,7 +7,7 @@
 
 
 import random
-from static_array im
+from static_array import *
 
 
 
