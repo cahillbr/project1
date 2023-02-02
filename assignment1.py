@@ -126,7 +126,7 @@ def count_sort(arr: StaticArray) -> StaticArray:
     for index in range(1, arr.length()):  # returns new staic array from given one
         if arr.get(index) > maximum_value:
             maximum_value = arr.get(index)
-    count = 0 * (maximum_value + 1)
+    count =   (maximum_value + 1) * arr.get(0)
     for index in range(arr.length()):
         count[arr.get(index)] += 1
     for index in range(1, maximum_value + 1):  # sorts in non ascewnding order using count agl
