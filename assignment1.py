@@ -3,7 +3,7 @@
 # Course:       CS261 - Data Structures
 # Assignment: 1
 # Due Date: 1/30/23
-# Description: introduction to python assignments
+# Description: introduction to python assignments with array
 
 
 import random
