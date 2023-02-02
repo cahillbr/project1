@@ -57,33 +57,33 @@ def reverse(arr: StaticArray) -> None:
 
 def rotate(arr: StaticArray, steps: int) -> StaticArray:
     set_arr = StaticArray(arr.length()) # function receievs the given paramters of shifting for direction
-    for i in range(arr.length()):  # right = positive and vice versa
+    for index in range(arr.length()):  # right = positive and vice versa
         new_index = (i + steps) % arr.length()
-        set_arr.set(new_index, arr.get(i))
+        set_arr.set(new_index, arr.get(index))
     return set_arr
 
     pass
 
 # ------------------- PROBLEM 5 - SA_RANGE ----------------------------------
 
-def sa_range(start: int, end: int) -> StaticArray:
+def sa_range(start: int, end: int) -> StaticArray: # receives both start and end integers
     arr = StaticArray(end - start + 1)
-    for i, j in enumerate(range(start, end + 1)):
-        arr.set(i, k)
-    return arr
+    for index, value in enumerate(range(start, end + 1)):
+        arr.set(index, value)
+    return arr      # returns values of consecutive integers
 
     pass
 
 # ------------------- PROBLEM 6 - IS_SORTED ---------------------------------
 
 def is_sorted(arr: StaticArray) -> int:
-    descending = True
+    descending = True  # Sorts array based on given ending value -1 or 1
     ascending = True
-    for i in range(1, arr.length()):
-        if arr.get(i) < arr.get(i - 1):
+    for index in range(1, arr.length()):
+        if arr.get(index) < arr.get(index - 1):
             ascending = False
-        if arr.get(i) > arr.get(i - 1):
-            descending = False
+        if arr.get(index) > arr.get(index - 1):
+            descending = False  # with also 0 being an otherwise value
         if not ascending and not descending:
             return 0
     return 1 if ascending else -1
@@ -92,57 +92,57 @@ def is_sorted(arr: StaticArray) -> int:
 # ------------------- PROBLEM 7 - FIND_MODE -----------------------------------
 
 def find_mode(arr: StaticArray) -> (int, int):
-    max_count = 1
-    current_count = 1
+    current_count = 1  #orders static array values in nondescending or ascending
+    maximum_count = 1
     mode = arr.get(0)
-    for i in range(1, arr.length()):
-        if arr.get(i) == arr.get(i - 1):
+    for index in range(1, arr.length()):
+        if arr.get(index) == arr.get(index - 1):
             current_count += 1
-            if current_count > max_count:
-                max_count = current_count
-                mode = arr.get(i)
-        else:
+            if current_count > maximum_count:
+                maximum_count = current_count
+                mode = arr.get(index)
+        else:  # output of array
             current_count = 1
-    return (mode, max_count)
+    return (mode, maximum_count)
     pass
 
 # ------------------- PROBLEM 8 - REMOVE_DUPLICATES -------------------------
 
 def remove_duplicates(arr: StaticArray) -> StaticArray:
-    unique = StaticArray(1)
+    unique = StaticArray(1) #orders static array values in nondescending or ascending
     unique.set(0, arr.get(0))
-    for i in range(1, arr.length()):
-        if arr.get(i) != arr.get(i - 1):
-            unique.set(unique.length(), arr.get(i))
+    for index in range(1, arr.length()):
+        if arr.get(index) != arr.get(index - 1):
+            unique.set(unique.length(), arr.get(index)) #differs from 7 using count sort alg
     return unique
     pass
 
 # ------------------- PROBLEM 9 - COUNT_SORT --------------------------------
 
 def count_sort(arr: StaticArray) -> StaticArray:
-    max_value = arr.get(0)
-    for i in range(1, arr.length()):
-        if arr.get(i) > max_value:
-            max_value = arr.get(i)
-    count = [0] * (max_value + 1)
-    for i in range(arr.length()):
-        count[arr.get(i)] += 1
-    for i in range(1, max_value + 1):
-        count[i] += count[i - 1]
+    maximum_value = arr.get(0)
+    for index in range(1, arr.length()):  # returns new staic array from given one
+        if arr.get(index) > maximum_value:
+            maximum_value = arr.get(index)
+    count = [0] * (maximum_value + 1)
+    for index in range(arr.length()):
+        count[arr.get(index)] += 1
+    for index in range(1, maximum_value + 1):  # sorts in non ascewnding order using count agl
+        count[index] += count[index - 1]
     sorted_array = StaticArray(arr.length())
-    for i in range(arr.length() - 1, -1, -1):
-        sorted_array.set(count[arr.get(i)] - 1, arr.get(i))
-        count[arr.get(i)] -= 1
+    for index in range(arr.length() - 1, -1, -1):
+        sorted_array.set(count[arr.get(index)] - 1, arr.get(index))
+        count[arr.get(index)] -= 1
     return sorted_array
 
     pass
 
 # ------------------- PROBLEM 10 - SORTED SQUARES ---------------------------
 
-def sorted_squares(arr: StaticArray) -> StaticArray:
+def sorted_squares(arr: StaticArray) -> StaticArray:  # importsd not descending elements
     squares = StaticArray(arr.length())
     l, r = 0, arr.length() - 1
-    for i in range(arr.length() - 1, -1, -1):
+    for i in range(arr.length() - 1, -1, -1): # returns new staic with sqare root values, does not modify original array
         if abs(arr.get(l)) > abs(arr.get(r)):
             squares.set(i, arr.get(l)**2)
             l += 1
