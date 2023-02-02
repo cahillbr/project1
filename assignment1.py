@@ -58,7 +58,7 @@ def reverse(arr: StaticArray) -> None:
 def rotate(arr: StaticArray, steps: int) -> StaticArray:
     set_arr = StaticArray(arr.length()) # function receievs the given paramters of shifting for direction
     for index in range(arr.length()):  # right = positive and vice versa
-        new_index = (i + steps) % arr.length()
+        new_index = (index + steps) % arr.length()
         set_arr.set(new_index, arr.get(index))
     return set_arr
 
